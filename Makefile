@@ -9,7 +9,8 @@ SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 OBJECTS_DIRECTORY = objects/
 OBJECTS_LIST = $(patsubst %.c, %.o, $(SOURCES_LIST))
 OBJECTS	= $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST))
-BONUS_SOURCES_LIST = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c
+BONUS_SOURCES_LIST = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c\
+	ft_lstclear.c ft_lstiter.c ft_lstmap.c
 BONUS_SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(BONUS_SOURCES_LIST))
 BONUS_OBJECTS_LIST = $(patsubst %.c, %.o, $(BONUS_SOURCES_LIST))
 BONUS_OBJECTS	= $(addprefix $(OBJECTS_DIRECTORY), $(BONUS_OBJECTS_LIST))
@@ -35,7 +36,7 @@ clean:
 
 fclean:						clean
 							rm -f $(NAME)
-							rmdir $(OBJECTS_DIRECTORY)
+							rm -rf $(OBJECTS_DIRECTORY)
 
 re:							fclean all
 
