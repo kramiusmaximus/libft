@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pfelipa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,16 +12,15 @@
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t len)
+int					ft_lstsize(t_list *lst)
 {
-	unsigned char		*ptrdst;
-	const unsigned char	*ptrsrc;
+	int len;
 
-	if (!dst && !src)
-		return (NULL);
-	ptrdst = dst;
-	ptrsrc = src;
-	while (len-- > 0)
-		*ptrdst++ = *ptrsrc++;
-	return (dst);
+	len = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		len++;
+	}
+	return (len);
 }

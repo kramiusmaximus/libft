@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "libft.h"
 
 static char	*ft_revstring(char *s)
 {
@@ -30,15 +30,35 @@ static char	*ft_revstring(char *s)
 	return (s);
 }
 
+int			ft_ndigits(int n)
+{
+	int		res;
+	long	x;
+
+	x = (long)n;
+	res = 1;
+	if (x < 0)
+	{
+		res++;
+		x *= -1;
+	}
+	while (x > 9)
+	{
+		x /= 10;
+		res++;
+	}
+	return (res + 1);
+}
+
 char		*ft_itoa(int n)
 {
-	char *res;
-	char *ptr;
-	int neg;
-	long pos;
-	char letter;
+	char	*res;
+	char	*ptr;
+	int		neg;
+	long	pos;
+	char	letter;
 
-	if (!(res = ft_calloc(20, sizeof(char))))
+	if (!(res = ft_calloc(ft_ndigits(n), sizeof(char))))
 		return (NULL);
 	ptr = res;
 	neg = (n < 0) ? 1 : 0;

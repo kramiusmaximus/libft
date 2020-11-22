@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "libft.h"
 
 static void		*ft_execute_order_66(char **buff, int len)
 {
@@ -19,6 +19,7 @@ static void		*ft_execute_order_66(char **buff, int len)
 	i = 0;
 	while (i < len)
 		free(buff[i++]);
+	free(buff);
 	return (NULL);
 }
 

@@ -9,17 +9,20 @@ SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 OBJECTS_DIRECTORY = objects/
 OBJECTS_LIST = $(patsubst %.c, %.o, $(SOURCES_LIST))
 OBJECTS	= $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST))
+BONUS_SOURCES_LIST = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c
+BONUS_SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(BONUS_SOURCES_LIST))
+BONUS_OBJECTS_LIST = $(patsubst %.c, %.o, $(BONUS_SOURCES_LIST))
+BONUS_OBJECTS	= $(addprefix $(OBJECTS_DIRECTORY), $(BONUS_OBJECTS_LIST))
 INCLUDE = ./
-HEADERS = ./header.h
+HEADERS = ./libft.h
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 all:						${NAME}
 
-${NAME}:					${OBJECTS_DIRECTORY} ${OBJECTS} $(HEADERS)
+$(NAME):					${OBJECTS_DIRECTORY} ${OBJECTS} $(HEADERS)
 							ar rc $(NAME) $(OBJECTS)
 							ranlib $(NAME)
-
 
 ${OBJECTS_DIRECTORY}:
 							mkdir -p $(OBJECTS_DIRECTORY)
@@ -35,3 +38,7 @@ fclean:						clean
 							rmdir $(OBJECTS_DIRECTORY)
 
 re:							fclean all
+
+bonus:						${OBJECTS_DIRECTORY} ${OBJECTS} ${OBJECTS_DIRECTORY} ${BONUS_OBJECTS} $(HEADERS)
+							ar rc $(NAME) $(OBJECTS) $(BONUS_OBJECTS)
+							ranlib $(NAME)
