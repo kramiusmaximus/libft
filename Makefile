@@ -32,7 +32,7 @@ ${OBJECTS_DIRECTORY}%.o : 	$(SOURCES_DIRECTORY)%.c $(HEADERS)
 							$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-							rm -f $(OBJECTS)
+							rm -f $(OBJECTS) $(BONUS_OBJECTS)
 
 fclean:						clean
 							rm -f $(NAME)
