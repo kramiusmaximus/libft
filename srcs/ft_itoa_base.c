@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pfelipa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
-static int 			valid_base(char *s)
+static	int			ft_valid_base(char *s)
 {
 	while (*s)
 	{
@@ -68,11 +68,10 @@ char				*ft_itoa_base(int n, char *base)
 	char	*ptr;
 	int		neg;
 	long	pos;
-	int 	baselen;
+	int		baselen;
 
-	if ((baselen = ft_strlen(base)) == 0 || !valid_base(base))
-		return (NULL);
-	if (!(res = ft_calloc(ft_ndigits(n, base), sizeof(char))))
+	if ((baselen = ft_strlen(base)) == 0 || !ft_valid_base(base) ||
+		!(res = ft_calloc(ft_ndigits(n, base), sizeof(char))))
 		return (NULL);
 	ptr = res;
 	neg = (n < 0) ? 1 : 0;

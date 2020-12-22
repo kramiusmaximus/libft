@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pfelipa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
-static int base_index(char c, char *base)
+static int	base_index(char c, char *base)
 {
 	int n;
 
@@ -38,7 +38,7 @@ int			ft_atoi_base(char *s, char *base)
 	sign = 1;
 	res = 0;
 	while (*s == ' ' || *s == '\t' || *s == '\n'
-		   || *s == '\v' || *s == '\r' || *s == '\f')
+	|| *s == '\v' || *s == '\r' || *s == '\f')
 		s++;
 	if (*s == '+' || *s == '-')
 	{
@@ -50,9 +50,7 @@ int			ft_atoi_base(char *s, char *base)
 	{
 		if (res * baselen < res)
 			return (sign == 1 ? -1 : 0);
-		res = (res * baselen) + (base_index(*s, base));
-		s++;
+		res = (res * baselen) + (base_index(*s++, base));
 	}
-
 	return (sign * res);
 }

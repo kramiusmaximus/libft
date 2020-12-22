@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_lstremove.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pfelipa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_lstremove(t_list **lst, int index)
 {
 	t_list *current;
-	t_list *next;
+	t_list *prev;
 
-	if (lst && *lst && del)
+	if (!lst || !*lst)
+		return ;
+	current = *lst;
+	if (!current->next || index == 0)
 	{
-		current = *lst;
+		ft_lstdelone(current, (void (*)(void *)) ht_freeitem);
+		*lst = NULL;
+	}
+	else
+	{
 		while (current)
 		{
-			next = current->next;
-			ft_lstdelone(current, del);
-			current = next;
+			if (index-- == 0)
+				break ;
+			prev = current;
+			current = current->next;
 		}
-		*lst = NULL;
+		prev->next = current->next;
+		ft_lstdelone(current, (void (*)(void *)) ht_freeitem);
 	}
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_lstget.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pfelipa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+t_list	*ft_lstget(t_list *lst, int index)
 {
-	t_list *current;
-	t_list *next;
-
-	if (lst && *lst && del)
+	if (!lst)
+		return (NULL);
+	while (lst)
 	{
-		current = *lst;
-		while (current)
-		{
-			next = current->next;
-			ft_lstdelone(current, del);
-			current = next;
-		}
-		*lst = NULL;
+		if (index-- == 0)
+			return (lst);
+		lst = lst->next;
 	}
+	return (NULL);
 }

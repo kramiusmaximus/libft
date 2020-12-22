@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pfelipa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+int		ft_strcmp(const char *s1, const char *s2)
 {
-	t_list *current;
-	t_list *next;
-
-	if (lst && *lst && del)
+	while ((*s1) && (*s2) && (*s1 == *s2))
 	{
-		current = *lst;
-		while (current)
-		{
-			next = current->next;
-			ft_lstdelone(current, del);
-			current = next;
-		}
-		*lst = NULL;
+		s1++;
+		s2++;
 	}
+	return ((int)((unsigned char)*s1 - (unsigned char)*s2));
 }

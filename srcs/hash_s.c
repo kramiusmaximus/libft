@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   hash_table_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pfelipa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+long			hash_s(char *s, int m)
 {
-	t_list *current;
-	t_list *next;
+	long	hash;
+	char	c;
 
-	if (lst && *lst && del)
-	{
-		current = *lst;
-		while (current)
-		{
-			next = current->next;
-			ft_lstdelone(current, del);
-			current = next;
-		}
-		*lst = NULL;
-	}
+	hash = 5381;
+	while ((c = *s++))
+		hash = (hash << 5) * hash + c;
+	return (ABS(hash % m));
 }

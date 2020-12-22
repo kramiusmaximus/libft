@@ -12,6 +12,8 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# define MAX(a,b)	(a > b) ? (a) : (b)
+# define ABS(a)		(a < 0) ? (-1 * a) : (a)
 # include <unistd.h>
 # include <stdlib.h>
 
@@ -20,6 +22,17 @@ typedef struct		s_list
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+typedef struct		s_pair
+{
+	char			*key;
+	char			*value;
+}					t_pair;
+typedef struct		s_ht
+{
+	t_list			**items;
+	int				count;
+	int				size;
+}					t_ht;
 int					ft_strlen(const char *str);
 size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
@@ -28,6 +41,7 @@ char				*ft_strrchr(const char *s, int c);
 char				*ft_strnstr(const char *haystack,\
 					const char *needle, size_t len);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
+int					ft_strcmp(const char *s1, const char *s2);
 int					ft_atoi(const char *s);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
@@ -63,10 +77,23 @@ void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
+int					ft_lstsearch(t_list *lst, void *content,\
+					int (*f)(void *, void *));
+t_list				*ft_lstget(t_list *lst, int index);
+void				ft_lstremove(t_list **lst, int index);
 int					ft_atoi_base(char *s, char *base);
 char				*ft_itoa_base(int n, char *base);
-
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void*),\
 					void (*del)(void *));
+long				hash_s(char *s, int m);
+t_pair				*ht_newpair(char *key, char *value);
+int					ht_paircmpr(t_pair *a, char *key);
+t_ht				*ht_create(int size);
+void				ht_freeitem(t_pair *item);
+void				ht_freetable(t_ht *table);
+void				ht_insert(t_ht *table, char *key, char *value);
+void				ht_remove(t_ht	*table, char *key);
+void				ht_print(t_ht *hashtable);
+void				ht_process_collision(t_ht *table, long index, t_pair *pair);
 
 #endif
