@@ -12,8 +12,8 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define MAX(a,b)	(a > b) ? (a) : (b)
-# define ABS(a)		(a < 0) ? (-1 * a) : (a)
+# define MAX(a,b)	(a >= b ? a : b)
+# define ABS(a)		(a < 0 ? -1 * a : a)
 # include <unistd.h>
 # include <stdlib.h>
 
