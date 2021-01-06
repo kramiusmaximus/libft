@@ -12,8 +12,6 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define MAX(a,b)	(a > b) ? (a) : (b)
-# define ABS(a)		(a < 0) ? (-1 * a) : (a)
 # include <unistd.h>
 # include <stdlib.h>
 
@@ -85,6 +83,9 @@ int					ft_atoi_base(char *s, char *base);
 char				*ft_itoa_base(int n, char *base);
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void*),\
 					void (*del)(void *));
+int					ft_abs(int a);
+int					ft_max(int a, int b);
+int					ft_min(int a, int b);
 long				hash_s(char *s, int m);
 t_pair				*ht_newpair(char *key, char *value);
 int					ht_paircmpr(t_pair *a, char *key);
