@@ -20,5 +20,5 @@ long			hash_s(char *s, int m)
 	hash = 5381;
 	while ((c = *s++))
 		hash = (hash << 5) * hash + c;
-	return (ABS(hash % m));
+	return (ft_abs(hash % m));
 }
